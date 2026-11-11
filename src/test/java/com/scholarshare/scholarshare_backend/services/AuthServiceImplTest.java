@@ -61,7 +61,7 @@ class AuthServiceImplTest {
     }
 
     private UserResponse response(Long id, String name, String email, AccountStatus status) {
-        return new UserResponse(id, name, email, null, Role.STUDENT, status, null, null, null, null, null, null);
+        return new UserResponse(id, name, email, null, Role.STUDENT, status, null, null, null, null, null);
     }
 
     @Test

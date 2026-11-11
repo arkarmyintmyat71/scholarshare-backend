@@ -1,11 +1,8 @@
 # Build stage: compiles the app with Maven (Java 21)
 FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
-COPY .mvn .mvn
-COPY mvnw pom.xml ./
-RUN chmod +x mvnw && ./mvnw -q -DskipTests dependency:go-offline
-COPY src src
-RUN ./mvnw -q -DskipTests package && cp target/*.jar app.jar
+COPY . .
+RUN chmod +x mvnw && ./mvnw -B -e -Dmaven.test.skip=true package && cp target/*.jar app.jar
 
 # Run stage: small image, limited memory so it fits free hosting (512 MB)
 FROM eclipse-temurin:21-jre
